@@ -1,0 +1,31 @@
+{
+  "name": "reflux",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "jest": "^23.6.0"
+  },
+  "scripts": {
+      "test": "jest --coverage"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wendyyuchensun/reflux.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/wendyyuchensun/reflux/issues"
+  },
+  "homepage": "https://github.com/wendyyuchensun/reflux#readme",
+  "jest": {
+      "collectCoverage": true,
+      "coverageReporters": ["text"]
+  }
+}
