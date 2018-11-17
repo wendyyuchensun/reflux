@@ -1,4 +1,4 @@
-const Dispatcher = require('../src/Dispatcher');
+const Dispatcher = require('../../src/Dispatcher');
 
 describe('Dispatcher', () => {
     let dispatcher;

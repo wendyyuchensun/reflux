@@ -1,4 +1,4 @@
-const Store = require('../src/Store');
+const Store = require('../../src/Store');
 
 describe('Store', () => {
     class TestStore extends Store {}
