@@ -28,20 +28,8 @@ class Store {
         return this._state;
     }
 
-    addListener(listener) {
-        const newListenerToken = `${this._name}Listener-${this._newListenerID}`;
-        this._newListenerID++;
-        this._listeners[newListenerToken] = listener;
-        return () => {
-            delete this._listeners[newListenerToken];
-        };
-    }
-
     consumeAction(action) {
         this._state = this._reduce(this._state, action);
-        Object.keys(this._listeners).forEach(listenerToken => {
-            this._listeners[listenerToken](this._state);
-        });
     }
 }
 

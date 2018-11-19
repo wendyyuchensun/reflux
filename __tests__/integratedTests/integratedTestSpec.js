@@ -6,66 +6,6 @@ const Store = require('../../src/Store');
 const Container = require('../../src/Container');
 
 describe('Integrated tests', () => {
-    describe('Dispatcher & Store', () => {
-        let dispatcher;
-
-        let listenerA;
-        let listenerB;
-
-        const reduceA = (prevState, action) => Object.assign(prevState, action.storeAState);
-        const reduceB = (prevState, action) => Object.assign(prevState, action.storeBState);
-
-        const initialState = {};
-
-        const action = {
-            storeAState: { foo: 'bar' },
-            storeBState: { foo: 'baz' }
-        };
-
-        beforeEach(() => {
-            dispatcher = new Dispatcher();
-            listenerA = jest.fn(args => expect(args).toEqual(action.storeAState));
-            listenerB = jest.fn(args => expect(args).toEqual(action.storeBState));
-        });
-
-        it('Dispatcher should dispatch actions to registered stores', () => {
-            const storeA = new Store('StoreA', dispatcher, reduceA, initialState);
-            storeA.addListener(listenerA);
-            expect(listenerA).toHaveBeenCalledTimes(0);
-
-            dispatcher.dispatch(action);
-            expect(listenerA).toHaveBeenCalledTimes(1);
-
-            const storeB = new Store('StoreB', dispatcher, reduceB, initialState);
-            storeB.addListener(listenerB);
-            expect(listenerB).toHaveBeenCalledTimes(0);
-
-            dispatcher.dispatch(action);
-            expect(listenerA).toHaveBeenCalledTimes(2);
-            expect(listenerB).toHaveBeenCalledTimes(1);
-        });
-
-        it('Dispatcher should not dispatch actions to unregistered stores', () => {
-            const storeA = new Store('StoreA', dispatcher, reduceA, initialState);
-            storeA.addListener(listenerA);
-            expect(listenerA).toHaveBeenCalledTimes(0);
-
-            const storeB = new Store('StoreB', dispatcher, reduceB, initialState);
-            storeB.addListener(listenerB);
-            expect(listenerB).toHaveBeenCalledTimes(0);
-
-            dispatcher.dispatch(action);
-            expect(listenerA).toHaveBeenCalledTimes(1);
-            expect(listenerB).toHaveBeenCalledTimes(1);
-
-            dispatcher.unregisterCallback(storeB.getDispatchToken());
-
-            dispatcher.dispatch(action);
-            expect(listenerA).toHaveBeenCalledTimes(2);
-            expect(listenerB).toHaveBeenCalledTimes(1);
-        });
-    });
-
     describe('Dispatcher, Store & Container', () => {
         const Cmpt = props => React.createElement('span', null, props.text);
 
@@ -90,11 +30,7 @@ describe('Integrated tests', () => {
             storeB = new Store('StoreB', dispatcher, reduceB, initialState);
 
             const containerAStores = [storeA];
-            const spy = jest.fn();
-            const containerAGetState = () => {
-                spy();
-                return { text: storeA.getState().text };
-            };
+            const containerAGetState = () => ({ text: storeA.getState().text });
             const ContainerA = createContainer(containerAStores, containerAGetState);
 
             const containerBStores = [storeA, storeB];
@@ -138,22 +74,6 @@ describe('Integrated tests', () => {
             dispatcher.dispatch(action2);
             expect(ContainerA.toJSON()).toMatchSnapshot();
             expect(ContainerB.toJSON()).toMatchSnapshot();
-
-            const spyCalledNumsBeforeLastDispatch = spy.mock.calls.length;
-            const action3 = {
-                storeAState: {
-                    text: 'woo',
-                },
-                storeBState: {
-                    text: 'too',
-                }
-            };
-
-            ContainerA.unmount();
-            dispatcher.dispatch(action3);
-            expect(ContainerA.toJSON()).toMatchSnapshot();
-            expect(ContainerB.toJSON()).toMatchSnapshot();
-            expect(spy.mock.calls.length).toEqual(spyCalledNumsBeforeLastDispatch);
         });
     });
 });

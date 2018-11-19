@@ -35,11 +35,3 @@ exports[`Integrated tests Dispatcher, Store & Container should work together pro
   baz-bar
 </span>
 `;
-
-exports[`Integrated tests Dispatcher, Store & Container should work together properly 7`] = `null`;
-
-exports[`Integrated tests Dispatcher, Store & Container should work together properly 8`] = `
-<span>
-  woo-bar
-</span>
-`;

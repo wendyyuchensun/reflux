@@ -16,8 +16,10 @@ We need an algorithm for the sequence of callback invocation.
 ## Store
 
 - Attach to a dispatcher by providing its `consumeAction` as callback of dispatcher.
-- `consumeAction` get called once new action comes in. It reduces action to generate store's new state and pass new state to listeners.
+- `consumeAction` get called once new action comes in. It reduces action to generate store's new state.
 
 Note that current implementation simplifies [EventEmitter](https://github.com/facebook/emitter) used in original flux architecture.
 
-The store does not shallow compare state changes in `consumeAction` for now, thus every action invokes listeners.
+## Container
+
+Wait for dispatch to all subscribed stores and then update it's state;

@@ -14,10 +14,6 @@ class Container extends React.Component {
         });
     }
 
-    componentWillUnmount() {
-        // this._removeListeners.forEach(removeListener => removeListener());
-    }
-
     render() {
         return React.createElement(this.props.Cmpt, this.state, null);
     }
