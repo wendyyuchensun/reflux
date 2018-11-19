@@ -54,7 +54,12 @@ class Dispatcher {
     }
 
     _invokeCallback(callbackToken) {
-        if (this._handledCallbacks[callbackToken]) return;
+        if (
+            !this._callbacks[callbackToken] ||
+            this._handledCallbacks[callbackToken]
+        ) {
+            return;
+        }
 
         this._pendingCallbacks[callbackToken] = true;
         this._callbacks[callbackToken](this._pendingAction);

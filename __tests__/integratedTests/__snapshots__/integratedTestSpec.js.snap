@@ -1,0 +1,45 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Integrated tests Dispatcher, Store & Container should work together properly 1`] = `
+<span>
+  
+</span>
+`;
+
+exports[`Integrated tests Dispatcher, Store & Container should work together properly 2`] = `
+<span>
+  
+</span>
+`;
+
+exports[`Integrated tests Dispatcher, Store & Container should work together properly 3`] = `
+<span>
+  foo
+</span>
+`;
+
+exports[`Integrated tests Dispatcher, Store & Container should work together properly 4`] = `
+<span>
+  foo-bar
+</span>
+`;
+
+exports[`Integrated tests Dispatcher, Store & Container should work together properly 5`] = `
+<span>
+  baz
+</span>
+`;
+
+exports[`Integrated tests Dispatcher, Store & Container should work together properly 6`] = `
+<span>
+  baz-bar
+</span>
+`;
+
+exports[`Integrated tests Dispatcher, Store & Container should work together properly 7`] = `null`;
+
+exports[`Integrated tests Dispatcher, Store & Container should work together properly 8`] = `
+<span>
+  woo-bar
+</span>
+`;

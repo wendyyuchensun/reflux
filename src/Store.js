@@ -16,19 +16,25 @@ class Store {
         this._newListenerID = 0;
     }
 
+    getDispatcher() {
+        return this._dispatcher;
+    }
+
     getDispatchToken() {
         return this._dispatchToken;
+    }
+
+    getState() {
+        return this._state;
     }
 
     addListener(listener) {
         const newListenerToken = `${this._name}Listener-${this._newListenerID}`;
         this._newListenerID++;
         this._listeners[newListenerToken] = listener;
-        return newListenerToken;
-    }
-
-    removeListener(listenerToken) {
-        delete this._listeners[listenerToken];
+        return () => {
+            delete this._listeners[newListenerToken];
+        };
     }
 
     consumeAction(action) {

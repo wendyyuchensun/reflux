@@ -57,7 +57,7 @@ describe('Store', () => {
 
         it('should not pass new state to removed listeners', () => {
             store.addListener(listenerA);
-            const listenerBToken = store.addListener(listenerB);
+            const removeListenerB = store.addListener(listenerB);
             expect(listenerA).toHaveBeenCalledTimes(0);
             expect(listenerB).toHaveBeenCalledTimes(0);
 
@@ -67,7 +67,7 @@ describe('Store', () => {
             expect(listenerB).toHaveBeenCalledTimes(1);
             expect(listenerB).toHaveBeenLastCalledWith(actionA);
 
-            store.removeListener(listenerBToken);
+            removeListenerB();
             expect(listenerA).toHaveBeenCalledTimes(1);
             expect(listenerB).toHaveBeenCalledTimes(1);
 

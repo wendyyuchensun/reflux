@@ -8,10 +8,12 @@
   },
   "dependencies": {},
   "devDependencies": {
-    "jest": "^23.6.0"
+    "jest": "^23.6.0",
+    "react": "^16.6.3",
+    "react-test-renderer": "^16.6.3"
   },
   "scripts": {
-      "test": "jest --coverage"
+    "test": "jest --coverage"
   },
   "repository": {
     "type": "git",
@@ -25,7 +27,9 @@
   },
   "homepage": "https://github.com/wendyyuchensun/reflux#readme",
   "jest": {
-      "collectCoverage": true,
-      "coverageReporters": ["text"]
+    "collectCoverage": true,
+    "coverageReporters": [
+      "text"
+    ]
   }
 }
