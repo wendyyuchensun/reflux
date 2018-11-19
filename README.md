@@ -1,4 +1,5 @@
 # ReFlux
+[![Build Status](https://travis-ci.com/wendyyuchensun/reflux.svg?branch=master)](https://travis-ci.com/wendyyuchensun/reflux)
 
 Redo flux. An exercise I gave to myself.
 Of course largely learned from [flux architecture](https://github.com/facebook/flux).
