@@ -34,7 +34,7 @@ describe('Store', () => {
             listenerB = jest.fn();
         });
 
-        it('should pass action to added listeners', () => {
+        it('should pass new state to added listeners', () => {
             store.addListener(listenerA);
             expect(listenerA).toHaveBeenCalledTimes(0);
             expect(listenerB).toHaveBeenCalledTimes(0);
@@ -55,7 +55,7 @@ describe('Store', () => {
             expect(listenerB).toHaveBeenLastCalledWith(actionB);
         });
 
-        it('should not pass action to removed listeners', () => {
+        it('should not pass new state to removed listeners', () => {
             store.addListener(listenerA);
             const listenerBToken = store.addListener(listenerB);
             expect(listenerA).toHaveBeenCalledTimes(0);
