@@ -25,7 +25,7 @@ class Dispatcher {
             const callbackToken = callbackTokens[i];
 
             if (this._pendingCallbacks[callbackToken]) {
-                throw new Error('Callbacks cannot have circular dependencies.');
+                throw new Error('Callbacks of a dispatcher cannot have circular dependencies.');
             }
 
             this._invokeCallback(callbackToken);
